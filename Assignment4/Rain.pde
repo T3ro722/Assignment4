@@ -16,7 +16,7 @@ class Rain{
     velocity.add(acceleration);//apply acceleration to velocity
     
   //reset if it goes out the window (non visible) to create an endless loop
-  if (position.y = 350){
+  if (position.y == 350){
     position.y = 40;//reset to top of window
     position.x = random(100,300);//randomize rain generation while still inside window range
   }
