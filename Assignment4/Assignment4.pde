@@ -42,6 +42,12 @@ void draw(){
   //game state management//
  if (currentPuzzle == 0){
    mainRoom();
+ }else if (currentPuzzle == 1){
+   piano.display();
+ }else if (currentPuzzle == 2){
+   violin.display();
+ }else if (currentPuzzle == 3){
+   quiz.display();
  }
 }
 
