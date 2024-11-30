@@ -19,3 +19,12 @@ class Rain{
   if (position.y = 350){
     position.y = 40;//reset to top of window
     position.x = random(100,300);//randomize rain generation while still inside window range
+  }
+}
+
+//display the rain
+void display(){
+  stroke(255);//white rain
+  line(position.x,position.y,position.x,position.y + 10); //draw the rain drop
+}
+}
