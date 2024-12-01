@@ -24,6 +24,9 @@ class Piano {
     //notes
     textSize(128);
     text("D Eb C B",20,20);
+    
+    //cheetsheet
+    image(cheat,280,0,120,180);
   }
 }
     

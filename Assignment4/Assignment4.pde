@@ -21,6 +21,7 @@ int currentPuzzle = 0; //for tracking which puzzle is currently on. 0 = main roo
 
 //PImages
 PImage room;
+PImage cheat;
 
 //declare Array
 Rain [] rains = new Rain [70];//all the raindrops
