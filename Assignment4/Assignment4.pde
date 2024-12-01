@@ -30,6 +30,12 @@ void setup(){
   size(400,400);
   //load main room image
   room = loadImage("room.png");
+  //load portraits image
+  table = loadImage("table.png");
+  
+  //initialize new puzzles
+  piano = new Piano();
+  violin = new Violin();
   
   //loop for rain array//
   for (int i = 0; i< rains.length; i++){
@@ -48,7 +54,7 @@ void draw(){
  }else if (currentPuzzle == 2){
    violin.display();
  }else if (currentPuzzle == 3){
-   quiz.display();
+   portraits();
  }
 }
 
@@ -56,4 +62,10 @@ void draw(){
 void mainRoom(){
   image(room,0,0,400,400);
 }
+
+//making portrait puzzle a user defined function since I decided to make it no longer interactive
+void portraits(){
+  background(255);
+  image(table,0,0,400,400); //display image
+  
   
