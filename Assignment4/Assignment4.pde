@@ -54,7 +54,10 @@ void draw(){
    violin.display();
  }else if (currentPuzzle == 3){
    portraits();
- }
+ }else if (currentPuzzle == 4){
+   rains.display();
+ }else if (currentPuzzle == 5){
+   door.display();
 }
 
 //defined functions
@@ -66,9 +69,17 @@ void mainRoom(){
 void portraits(){
   background(255);
   image(table,0,0,400,400); //display image
+}
   
 //the back button
 void backButton(){
-  
+  //conditional statement to ensure back button is only displaying in puzzles (Window, piano, vioiin, portrait, door, not in main room)
+  if (currentPuzzle = 1 || currentPuzzle = 2 || currentPuzzle = 3 || currentPuzzle = 4 || currentPuzzle = 5){
+  fill(255,0,0);//bright red
+  rect(20,360,60,20);
+  fill(0);
+  text("BACK",50,370);
+  }
+}
   
   

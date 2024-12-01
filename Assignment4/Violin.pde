@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 class Violin {
   boolean isSolved = false;
   
@@ -39,4 +37,3 @@ class Violin {
     line(300,340,360,340);
     line(330,310,330,370);
   }
->>>>>>> 9b522d6 (Reapply "drew the violin UI")
