@@ -16,7 +16,6 @@ boolean isWon = false;
 //tracking puzzles
 boolean pianoSolved = false;
 boolean violinSolved = false;
-boolean portraitSolved = false;
 int currentPuzzle = 0; //for tracking which puzzle is currently on. 0 = main room, 1 = piano, 2 = violin, 3 = portraits, 4 = door, 5 = window
 
 //PImages
@@ -67,5 +66,9 @@ void mainRoom(){
 void portraits(){
   background(255);
   image(table,0,0,400,400); //display image
+  
+//the back button
+void backButton(){
+  
   
   
