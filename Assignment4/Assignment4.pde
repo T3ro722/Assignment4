@@ -21,20 +21,33 @@ int currentPuzzle = 0; //for tracking which puzzle is currently on. 0 = main roo
 //PImages
 PImage room;
 PImage cheat;
+PImage doorImage;
+PImage table;
+
+// Puzzle objects
+Door door;
+Piano piano;
+Violin violin;
 
 //declare Array
 Rain [] rains = new Rain [70];//all the raindrops
 
 void setup(){
   size(400,400);
+  
   //load main room image
   room = loadImage("room.png");
+  //load cheat sheet
+  cheat = loadImage("cheat.png");
   //load portraits image
   table = loadImage("table.png");
+  //load door image
+  doorImage = loadImage("door.png");
   
   //initialize new puzzles
   piano = new Piano();
   violin = new Violin();
+  door = new Door();
   
   //loop for rain array//
   for (int i = 0; i< rains.length; i++){
@@ -84,8 +97,13 @@ void backButton(){
   fill(255,0,0);//bright red
   rect(20,360,60,20);
   fill(0);
+  textAlign(CENTER,CENTER);//locate the text accurately
   text("BACK",50,370);
   }
 }
+
+//display rain
+void displayRain(){
+  for (
   
   
