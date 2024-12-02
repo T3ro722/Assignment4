@@ -104,6 +104,10 @@ void backButton(){
 
 //display rain
 void displayRain(){
-  for (
+  for (int i = 0; i<rains.length;i++){
+    rains[i].update(); //update each raindrop's position
+    rains[i].display();//display each raindrop
+  }
+}
   
   
