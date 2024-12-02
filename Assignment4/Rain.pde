@@ -12,6 +12,12 @@ class Rain {
   
   //update the position of the rain
   void update(){
+    
+    //sex maximum rain velocity
+    if (velocity.y > 11){
+      velocity.y = 11;
+    }
+    
     position.add(velocity);//apply velocity to position
     velocity.add(acceleration);//apply acceleration to velocity
     

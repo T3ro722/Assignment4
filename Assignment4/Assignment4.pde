@@ -23,6 +23,7 @@ PImage room;
 PImage cheat;
 PImage doorImage;
 PImage table;
+PImage window;
 
 // Puzzle objects
 Door door;
