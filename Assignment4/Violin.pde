@@ -1,7 +1,7 @@
 class Violin {
   boolean isSolved = false;
   int currentNoteIndex = 3; //current note played
-  String[] notes = {"D", "E", "Eb", "F", "Fs", "G"}; // List of notes
+  String[] notes = {"D", "Eb", "E", "F", "Fs", "G"}; // List of notes
   
   void display(){
     //draw the violin

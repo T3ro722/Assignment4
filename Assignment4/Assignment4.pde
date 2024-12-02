@@ -14,7 +14,7 @@ import processing.sound.*;
 
 //Sound files
 SoundFile[]noteSounds; //array for storing notes
-String[] notes = {"D", "E", "Eb", "F", "Fs", "G"};
+String[] notes = {"D", "Eb", "E", "F", "Fs", "G"};
 
 //game states
 boolean isPlaying = true;
@@ -48,8 +48,8 @@ void setup(){
   //load sound Files
   noteSounds = new SoundFile[notes.length];
   noteSounds[0] = new SoundFile(this, "D.wav");
-  noteSounds[1] = new SoundFile(this, "E.wav");
-  noteSounds[2] = new SoundFile(this, "Eb.wav");
+  noteSounds[1] = new SoundFile(this, "Eb.wav");
+  noteSounds[2] = new SoundFile(this, "E.wav");
   noteSounds[3] = new SoundFile(this, "F.wav");
   noteSounds[4] = new SoundFile(this, "Fs.wav");
   noteSounds[5] = new SoundFile(this, "G.wav");
