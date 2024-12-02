@@ -1,5 +1,6 @@
 class Piano {
   boolean isSolved = false; //isSolved to track what it will display when player clicks in, if incomplete, it will display puzzles, if already completed, then the clue and a back button
+  int currentStep = 0; //tracks which key you clicked
   
   void display(){
     //draw the piano
@@ -27,6 +28,31 @@ class Piano {
     
     //cheetsheet
     image(cheat,160,10,230,150);
+    
+    //sucess message after solved
+    if(isSolved){
+      fill(255,0,0);
+      textSize(100);
+      text("0",width/2,height/2);
   }
 }
+
+ void whenMousePressed(int mouseX, int mouseY) {
+    if (!isSolved) {
+      // Check which key was clicked in sequence
+      if (currentStep == 0 && mouseX > 220 && mouseX < 280 && mouseY > 200 && mouseY < 340) {
+        currentStep++; // D key
+      } else if (currentStep == 1 && mouseX > 260 && mouseX < 300 && mouseY > 200 && mouseY < 280) {
+        currentStep++; // Eb key
+      } else if (currentStep == 2 && mouseX > 160 && mouseX < 220 && mouseY > 200 && mouseY < 340) {
+        currentStep++; // C key
+      } else if (currentStep == 3 && mouseX > 100 && mouseX < 160 && mouseY > 200 && mouseY < 340) {
+        isSolved = true; // B key
+      }
+    }
+  }
+}
+
+
+    
     

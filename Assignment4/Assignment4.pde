@@ -138,6 +138,9 @@ void displayRain(){
 }
 
 void mousePressed() {
+  if (currentPuzzle == 1){ //piano interaction
+  piano.whenMousePressed(mouseX,mouseY);
+  }
   if (currentPuzzle == 0) { // Main room interactions
     if (mouseX > 220 && mouseX < 360 && mouseY > 160 && mouseY < 260) {
       currentPuzzle = 1; // Piano

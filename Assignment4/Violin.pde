@@ -1,6 +1,6 @@
 class Violin {
   boolean isSolved = false;
-  int currentNoteIndex = 3; //current note played
+  int currentNoteIndex = 3; //current note played (F)
   String[] notes = {"D", "Eb", "E", "F", "Fs", "G"}; // List of notes
   
   void display(){
@@ -44,7 +44,7 @@ class Violin {
     //success message if solved
     if (isSolved) {
       fill(255,0,0);
-      textSize(50);
+      textSize(100);
       text("9",width/2,height/2);
   }
 }
