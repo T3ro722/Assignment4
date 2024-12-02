@@ -46,16 +46,7 @@ Rain [] rains = new Rain [10];//all the raindrops
 void setup(){
   size(400,400);
   
-  //load sound Files
-  noteSounds = new SoundFile[notes.length];
-  noteSounds[0] = new SoundFile(this, "D.wav");
-  noteSounds[1] = new SoundFile(this, "Eb.wav");
-  noteSounds[2] = new SoundFile(this, "E.wav");
-  noteSounds[3] = new SoundFile(this, "F.wav");
-  noteSounds[4] = new SoundFile(this, "Fs.wav");
-  noteSounds[5] = new SoundFile(this, "G.wav");
-  
-  //load main room image
+   //load main room image
   room = loadImage("room.png");
   //load cheat sheet
   cheat = loadImage("cheat.png");
@@ -66,7 +57,16 @@ void setup(){
   //load window image
   window = loadImage("window.png");
   
-  //initialize new puzzles
+  //load sound Files
+  noteSounds = new SoundFile[notes.length];
+  noteSounds[0] = new SoundFile(this, "D.wav");
+  noteSounds[1] = new SoundFile(this, "Eb.wav");
+  noteSounds[2] = new SoundFile(this, "E.wav");
+  noteSounds[3] = new SoundFile(this, "F.wav");
+  noteSounds[4] = new SoundFile(this, "Fs.wav");
+  noteSounds[5] = new SoundFile(this, "G.wav");
+  
+   //initialize new puzzles
   piano = new Piano();
   violin = new Violin(noteSounds);
   door = new Door();
@@ -75,11 +75,13 @@ void setup(){
   for (int i = 0; i< rains.length; i++){
     rains[i] = new Rain();
   }
+ 
 }
 
 void draw(){
   background(255);
   
+  println("isWon: " + isWon + ", isLost: " + isLost);
    if (isWon || isLost) {
     displayEndingScreen();
   } else {
@@ -106,6 +108,29 @@ void draw(){
 }
 
 //defined functions
+void displayEndingScreen() {
+  background(0);
+  textAlign(CENTER, CENTER);
+  textSize(30);
+
+  if (isWon) {
+    fill(236,128,188); // bright and pink
+    text("Congratulations!", width / 2, height / 2 - 50);
+    text("You are a true Lingling :D", width / 2, height / 2);
+  } else if (isLost) {
+    fill(200, 0, 0); // Red for failure
+    text("Game Over!", width / 2, height / 2 - 50);
+    text("Try Again?", width / 2, height / 2);
+  }
+
+  // Reset button
+  fill(236, 128, 188); // Pink for the reset button
+  rect(100, 310, 200, 50);
+  fill(0);
+  textSize(20);
+  text("Play Again", width / 2, 335);
+}
+
 void mainRoom(){
   image(room,0,0,400,400);
 }
@@ -138,30 +163,7 @@ void resetGame() {
   // Reset puzzles
   piano = new Piano();
   violin = new Violin(noteSounds);
-  door.reset(); // Reset door state
-}
-
-void displayEndingScreen() {
-  background(0);
-  textAlign(CENTER, CENTER);
-  textSize(30);
-
-  if (isWon) {
-    fill(236,128,188); // bright and pink
-    text("Congratulations!", width / 2, height / 2 - 50);
-    text("You are a true Lingling :D", width / 2, height / 2);
-  } else if (isLost) {
-    fill(200, 0, 0); // Red for failure
-    text("Game Over!", width / 2, height / 2 - 50);
-    text("Try Again?", width / 2, height / 2);
-  }
-
-  // Reset button
-  fill(236, 128, 188); // Pink for the reset button
-  rect(100, 310, 200, 50);
-  fill(0);
-  textSize(20);
-  text("Play Again", width / 2, 335);
+  door = new Door();
 }
 
 //display rain
@@ -193,8 +195,11 @@ void mousePressed() {
   }
   if (currentPuzzle == 5) { // Door puzzle
     println("Mouse interaction routed to Door puzzle");
-    door.display;
+    door.display();
     door.whenMousePressed(mouseX, mouseY);
+  }
+  if (currentPuzzle == 5 && (isLost || isWon)){
+    displayEndingScreen();
   }
   // Reset button interaction (for game over screen)
   if ((isLost || isWon) && mouseX > 100 && mouseX < 280 && mouseY > 310 && mouseY < 360) {
@@ -225,6 +230,7 @@ void mousePressed() {
   if (currentPuzzle > 0 && mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380) {
     currentPuzzle = 0; // Return to main room
   }
+}
 }
 
   
