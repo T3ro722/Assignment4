@@ -94,4 +94,3 @@ class Violin {
     println("Playing Note: " + notes[currentNoteIndex]);
   }
 }
-}

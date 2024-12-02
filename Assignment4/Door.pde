@@ -1,7 +1,5 @@
-class Door{
+class Door {
   int currentStep = 0; // Tracks the current number in the sequence (0 for 4, 1 for 0, 2 for 9)
-  boolean isWon = false; // Tracks if the door puzzle is solved
-  boolean isLost = false; // Tracks if the door puzzle is failed
 
   void display() {
     image(doorImage, 0, 0, 400, 400);
@@ -20,18 +18,13 @@ class Door{
     } else if (currentStep == 1 && mouseX > 170 && mouseX < 200 && mouseY > 300 && mouseY < 330) {
       println("0 clicked, step 2 passed.");
       currentStep++; // Correct second number: 0
-    } else if (currentStep == 2 && mouseX > 260 && mouseX < 310 && mouseY > 280 && mouseY < 330) {
+    } else if (currentStep == 2 && mouseX > 210 && mouseX < 240 && mouseY > 250 && mouseY < 290) {
       println("9 clicked, puzzle solved!");
       isWon = true; // Correct third number: 9
+      println("Global isWon updated to true.");
     } else {
       println("Incorrect number or out of sequence. Puzzle failed.");
       isLost = true; // Any incorrect click results in failure
     }
-  }
-
-  void reset() {
-    currentStep = 0; // Reset sequence
-    isWon = false;
-    isLost = false;
   }
 }
