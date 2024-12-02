@@ -22,11 +22,11 @@ class Piano {
     rect(380,200,40,80);
     
     //notes
-    textSize(128);
-    text("D Eb C B",20,20);
+    textSize(40);
+    text("D Eb C B",80,20);
     
     //cheetsheet
-    image(cheat,280,0,120,180);
+    image(cheat,160,10,230,150);
   }
 }
     

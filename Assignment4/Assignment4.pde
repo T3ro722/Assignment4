@@ -97,6 +97,7 @@ void backButton(){
   fill(255,0,0);//bright red
   rect(20,360,60,20);
   fill(0);
+  textSize(15);
   textAlign(CENTER,CENTER);//locate the text accurately
   text("BACK",50,370);
   }
@@ -107,6 +108,19 @@ void displayRain(){
   for (int i = 0; i<rains.length;i++){
     rains[i].update(); //update each raindrop's position
     rains[i].display();//display each raindrop
+  }
+}
+
+void mousePressed(){
+  if (currentPuzzle == 0){ //piano entry
+    if(mouseX > 220 && mouseX < 360 && mouseY > 160 && mouseY < 260){
+      currentPuzzle = 1;
+    }
+  }
+  if (currentPuzzle > 0){ //back button entry
+    if(mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380){
+      currentPuzzle = 0; //bring to main room
+    }
   }
 }
   
