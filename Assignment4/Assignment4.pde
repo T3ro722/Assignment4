@@ -67,7 +67,7 @@ void setup(){
   
   //initialize new puzzles
   piano = new Piano();
-  violin = new Violin();
+  violin = new Violin(noteSounds);
   door = new Door();
   
   //loop for rain array//
@@ -141,6 +141,9 @@ void mousePressed() {
   if (currentPuzzle == 1){ //piano interaction
   piano.whenMousePressed(mouseX,mouseY);
   }
+  if (currentPuzzle == 2) { // Violin puzzle interactions
+    violin.whenMousePressed(mouseX,mouseY); // Pass only the noteSounds array
+  }
   if (currentPuzzle == 0) { // Main room interactions
     if (mouseX > 220 && mouseX < 360 && mouseY > 160 && mouseY < 260) {
       currentPuzzle = 1; // Piano
@@ -152,8 +155,6 @@ void mousePressed() {
       currentPuzzle = 4; // Window
     } else if (mouseX > 130 && mouseX < 190 && mouseY > 130 && mouseY < 240){
       currentPuzzle = 5; //door
-  } else if (currentPuzzle == 2) { // Violin puzzle interactions
-    violin.whenMousePressed(mouseX,mouseY,noteSounds); // Pass only the noteSounds array
   }
   }
 
