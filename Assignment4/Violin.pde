@@ -1,5 +1,7 @@
 class Violin {
   boolean isSolved = false;
+  int currentNoteIndex = 3; //current note played
+  String[] notes = {"D", "E", "Eb", "F", "Fs", "G"}; // List of notes
   
   void display(){
     //draw the violin
@@ -31,12 +33,56 @@ class Violin {
     stroke(0);
     
     //tuning buttons
-    fill(37,168,255);
+    fill(37,168,255); //minus button
     rect(140,300,100,80);
-    fill(255,37,157);
+    fill(255,37,157); //plus button
     rect(280,300,100,80);
     line(160,340,220,340);
     line(300,340,360,340);
     line(330,310,330,370);
+    
+    //success message if solved
+    if (isSolved) {
+      fill(255,0,0);
+      textSize(50);
+      text("9",width/2,height/2);
+  }
+}
+
+void whenMousePressed(int mouseX, int mouseY, SoundFile[] noteSounds) {
+    if (!isSolved) {
+      if (mouseX > 140 && mouseX < 240 && mouseY > 300 && mouseY < 380) { // Minus button
+        changeNote(-1, noteSounds); // Decrease note
+      } else if (mouseX > 280 && mouseX < 380 && mouseY > 300 && mouseY < 380) { // Plus button
+        changeNote(1, noteSounds); // Increase note
+      } else { // Clicked anywhere else in the puzzle
+        playCurrentNote(noteSounds);
+      }
+    }
+  }
+
+  void changeNote(int direction, SoundFile[] noteSounds) {
+    // Update the note index
+    currentNoteIndex = constrain(currentNoteIndex + direction, 0, notes.length - 1);
+
+    // Play the updated note
+    playCurrentNote(noteSounds);
+
+    // Check if the puzzle is solved
+    if (notes[currentNoteIndex].equals("D")) {
+      isSolved = true;
+    }
+  }
+
+  void playCurrentNote(SoundFile[] noteSounds) {
+    // Stop all notes
+    for (int i = 0; i < noteSounds.length; i++) {
+      if (noteSounds[i].isPlaying()) {
+        noteSounds[i].stop();
+      }
+    }
+
+    // Play the current note
+    noteSounds[currentNoteIndex].play();
   }
 }

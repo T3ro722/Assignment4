@@ -5,9 +5,17 @@
 ///But becareful! imputing the incorrect number will make you lose the game! >:D//////
 ///Good luck! :)//////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
+/////reference used: https://processing.org/reference/libraries/sound/index.html//////
+//////////////////////////////////////////////////////////////////////////////////////
 
+import processing.sound.*;
 
 //Global Variables
+
+//Sound files
+SoundFile[]noteSounds; //array for storing notes
+String[] notes = {"D", "E", "Eb", "F", "Fs", "G"};
+
 //game states
 boolean isPlaying = true;
 boolean isLost = false;
@@ -36,6 +44,15 @@ Rain [] rains = new Rain [10];//all the raindrops
 
 void setup(){
   size(400,400);
+  
+  //load sound Files
+  noteSounds = new SoundFile[notes.length];
+  noteSounds[0] = new SoundFile(this, "D.wav");
+  noteSounds[1] = new SoundFile(this, "E.wav");
+  noteSounds[2] = new SoundFile(this, "Eb.wav");
+  noteSounds[3] = new SoundFile(this, "F.wav");
+  noteSounds[4] = new SoundFile(this, "Fs.wav");
+  noteSounds[5] = new SoundFile(this, "G.wav");
   
   //load main room image
   room = loadImage("room.png");
@@ -120,33 +137,26 @@ void displayRain(){
   }
 }
 
-void mousePressed(){
-  if (currentPuzzle == 0){ //piano entry
-    if(mouseX > 220 && mouseX < 360 && mouseY > 160 && mouseY < 260){
-      currentPuzzle = 1;
+void mousePressed() {
+  if (currentPuzzle == 0) { // Main room interactions
+    if (mouseX > 220 && mouseX < 360 && mouseY > 160 && mouseY < 260) {
+      currentPuzzle = 1; // Piano
+    } else if (mouseX > 320 && mouseX < 380 && mouseY > 260 && mouseY < 380) {
+      currentPuzzle = 2; // Violin
+    } else if (mouseX > 0 && mouseX < 110 && mouseY > 120 && mouseY < 280) {
+      currentPuzzle = 3; // Portraits
+    } else if (mouseX > 210 && mouseX < 260 && mouseY > 80 && mouseY < 150) {
+      currentPuzzle = 4; // Window
     }
+  } else if (currentPuzzle == 2) { // Violin puzzle interactions
+    violin.whenMousePressed(mouseX,mouseY,noteSounds); // Pass only the noteSounds array
   }
-  if (currentPuzzle == 0){ //violin entry
-  if (mouseX > 320 && mouseX<380 && mouseY>260 && mouseY<380){
-    currentPuzzle = 2;
-  }
-}
-  if (currentPuzzle == 0){ //portrait entry
-  if (mouseX > 0 && mouseX < 110 && mouseY > 120 && mouseY < 280){
-    currentPuzzle = 3;
+
+  // Back button interaction
+  if (currentPuzzle > 0 && mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380) {
+    currentPuzzle = 0; // Return to main room
   }
 }
-  if (currentPuzzle == 0){ //window entry
-  if (mouseX > 210 && mouseX < 260 && mouseY > 80 && mouseY < 150){
-    currentPuzzle = 4;
-  }
-}
-  
-  if (currentPuzzle > 0){ //back button entry
-    if(mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380){
-      currentPuzzle = 0; //bring to main room
-    }
-  }
-}
+
   
   
