@@ -150,9 +150,11 @@ void mousePressed() {
       currentPuzzle = 3; // Portraits
     } else if (mouseX > 210 && mouseX < 260 && mouseY > 80 && mouseY < 150) {
       currentPuzzle = 4; // Window
-    }
+    } else if (mouseX > 130 && mouseX < 190 && mouseY > 130 && mouseY < 240){
+      currentPuzzle = 5; //door
   } else if (currentPuzzle == 2) { // Violin puzzle interactions
     violin.whenMousePressed(mouseX,mouseY,noteSounds); // Pass only the noteSounds array
+  }
   }
 
   // Back button interaction
