@@ -22,6 +22,8 @@ class Door {
       println("9 clicked, puzzle solved!");
       isWon = true; // Correct third number: 9
       println("Global isWon updated to true.");
+    } else if (mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380){
+      backButton();
     } else {
       println("Incorrect number or out of sequence. Puzzle failed.");
       isLost = true; // Any incorrect click results in failure
