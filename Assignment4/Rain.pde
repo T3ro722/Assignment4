@@ -30,7 +30,6 @@ class Rain {
 
 //display the rain
 void display(){
-  image(window, 0, 0, 400, 400);
   stroke(255);//white rain
   line(position.x,position.y,position.x,position.y + 10); //draw the rain drop
 }

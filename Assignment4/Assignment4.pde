@@ -32,7 +32,7 @@ Violin violin;
 Rain rain;
 
 //declare Array
-Rain [] rains = new Rain [70];//all the raindrops
+Rain [] rains = new Rain [10];//all the raindrops
 
 void setup(){
   size(400,400);
@@ -109,6 +109,11 @@ void backButton(){
 
 //display rain
 void displayRain(){
+  
+  //window
+  image (window,0,0,400,400);
+  
+  // loop
   for (int i = 0; i<rains.length;i++){
     rains[i].update(); //update each raindrop's position
     rains[i].display();//display each raindrop
