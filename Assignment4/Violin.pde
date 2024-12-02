@@ -9,6 +9,7 @@ class Violin {
     rect(130,0,120,280);
     fill(60);
     rect(140,0,100,280);
+    
     //pegs
     fill(39);
     rect(70,80,70,20);
@@ -19,6 +20,7 @@ class Violin {
     ellipse(320,60,40,40);
     rect(240,120,70,20);
     ellipse(320,130,40,40);
+    
     //strings
     stroke(255);
     line(160,0,160,280);
@@ -37,3 +39,4 @@ class Violin {
     line(300,340,360,340);
     line(330,310,330,370);
   }
+}
