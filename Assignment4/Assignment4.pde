@@ -7,6 +7,7 @@
 //////////////////////////////////////////////////////////////////////////////////////
 /////reference used: https://processing.org/reference/libraries/sound/index.html//////
 /////https://processing.org/reference/String.html/////////////////////////////////////
+////https://processing.org/reference/return.html#:~:text=Functions%20declared%20with%20void%20can,program%20to%20the%20remaining%20statements.////
 
 import processing.sound.*;
 
@@ -79,6 +80,9 @@ void setup(){
 void draw(){
   background(255);
   
+   if (isWon || isLost) {
+    displayEndingScreen();
+  } else {
   //game state management//
  if (currentPuzzle == 0){
    mainRoom();
@@ -98,6 +102,7 @@ void draw(){
    door.display();
    backButton();
  }
+}
 }
 
 //defined functions
@@ -124,6 +129,41 @@ void backButton(){
   }
 }
 
+void resetGame() {
+  println("Resetting game...");
+  isWon = false;
+  isLost = false;
+  currentPuzzle = 0;
+
+  // Reset puzzles
+  piano = new Piano();
+  violin = new Violin(noteSounds);
+  door.reset(); // Reset door state
+}
+
+void displayEndingScreen() {
+  background(0);
+  textAlign(CENTER, CENTER);
+  textSize(30);
+
+  if (isWon) {
+    fill(236,128,188); // bright and pink
+    text("Congratulations!", width / 2, height / 2 - 50);
+    text("You are a true Lingling :D", width / 2, height / 2);
+  } else if (isLost) {
+    fill(200, 0, 0); // Red for failure
+    text("Game Over!", width / 2, height / 2 - 50);
+    text("Try Again?", width / 2, height / 2);
+  }
+
+  // Reset button
+  fill(236, 128, 188); // Pink for the reset button
+  rect(100, 310, 200, 50);
+  fill(0);
+  textSize(20);
+  text("Play Again", width / 2, 335);
+}
+
 //display rain
 void displayRain(){
   
@@ -138,11 +178,34 @@ void displayRain(){
 }
 
 void mousePressed() {
+  if (isWon || isLost) {
+    // Reset button interaction
+    if (mouseX > 100 && mouseX < 300 && mouseY > 310 && mouseY < 360) {
+      println("Reset button clicked");
+      resetGame();
+    }
+  } else {
   if (currentPuzzle == 1){ //piano interaction
   piano.whenMousePressed(mouseX,mouseY);
   }
   if (currentPuzzle == 2) { // Violin puzzle interactions
     violin.whenMousePressed(mouseX,mouseY); // Pass only the noteSounds array
+  }
+  if (currentPuzzle == 5) { // Door puzzle
+    println("Mouse interaction routed to Door puzzle");
+    door.display;
+    door.whenMousePressed(mouseX, mouseY);
+  }
+  // Reset button interaction (for game over screen)
+  if ((isLost || isWon) && mouseX > 100 && mouseX < 280 && mouseY > 310 && mouseY < 360) {
+    println("Reset button clicked");
+    resetGame();
+  }
+
+  // Back button interaction
+  if (currentPuzzle > 0 && mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380) {
+    println("Back button clicked");
+    currentPuzzle = 0; // Return to main room
   }
   if (currentPuzzle == 0) { // Main room interactions
     if (mouseX > 220 && mouseX < 360 && mouseY > 160 && mouseY < 260) {
