@@ -1,8 +1,5 @@
 class Door {
-  PImage door;
-  //load door image
+  void display(){
+  image(doorImage, 0, 0, 400, 400);
 }
-
-void display(){
-  door = loadImage("door.png");
 }
