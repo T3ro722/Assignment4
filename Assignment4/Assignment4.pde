@@ -28,6 +28,7 @@ PImage table;
 Door door;
 Piano piano;
 Violin violin;
+Rain rain;
 
 //declare Array
 Rain [] rains = new Rain [70];//all the raindrops
@@ -43,6 +44,8 @@ void setup(){
   table = loadImage("table.png");
   //load door image
   doorImage = loadImage("door.png");
+  //load window image
+  window = loadImage("window.png");
   
   //initialize new puzzles
   piano = new Piano();
@@ -117,6 +120,22 @@ void mousePressed(){
       currentPuzzle = 1;
     }
   }
+  if (currentPuzzle == 0){ //violin entry
+  if (mouseX > 320 && mouseX<380 && mouseY>260 && mouseY<380){
+    currentPuzzle = 2;
+  }
+}
+  if (currentPuzzle == 0){ //portrait entry
+  if (mouseX > 0 && mouseX < 110 && mouseY > 120 && mouseY < 280){
+    currentPuzzle = 3;
+  }
+}
+  if (currentPuzzle == 0){ //window entry
+  if (mouseX > 210 && mouseX < 260 && mouseY > 80 && mouseY < 150){
+    currentPuzzle = 4;
+  }
+}
+  
   if (currentPuzzle > 0){ //back button entry
     if(mouseX > 20 && mouseX < 80 && mouseY > 360 && mouseY < 380){
       currentPuzzle = 0; //bring to main room
